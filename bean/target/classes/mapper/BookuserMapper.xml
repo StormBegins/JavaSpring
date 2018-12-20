@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tjs.persons.dao.BookuserMapper">
+  <resultMap id="BaseResultMap" type="com.tjs.persons.entity.Bookuser">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="Bpassword" jdbcType="VARCHAR" property="bpassword" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="bookpower" jdbcType="VARCHAR" property="bookpower" />
+  </resultMap>
+  <insert id="insert" parameterType="com.tjs.persons.entity.Bookuser">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bookuser (id, name, Bpassword, 
+      role, bookpower)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{bpassword,jdbcType=VARCHAR}, 
+      #{role,jdbcType=VARCHAR}, #{bookpower,jdbcType=VARCHAR})
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, name, Bpassword, role, bookpower
+    from bookuser
+  </select>
+</mapper>
